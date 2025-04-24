@@ -86,9 +86,10 @@ local function vgqrzbt(rhnqxma, vfmksoq, qlemvuc)
 	end
 end
 
-vgqrzbt("Conectando ao Servidor Proxy", 1, 2)
-vgqrzbt("Autenticando Usuário", 2, 3)
-vgqrzbt("Fazendo Outras Coisas", 3, 4)
+vgqrzbt("Connecting", 1, 2)
+print("Connected")
+vgqrzbt("Autenticating User", 2, 3)
+vgqrzbt("Doing Other Stuff", 3, 4)
 
 local lpkavtx = ztyuqne:Create(hqzktpo, TweenInfo.new(1), { BackgroundTransparency = 1 })
 lpkavtx:Play()
@@ -103,7 +104,7 @@ trlxvmp:Stop()
 qloxten:Play()
 task.wait(1.5)
 
-mjcqtrv:Kick("Falha Ao Autenticar: Usuário Blacklisted Detectado! " .. mjcqtrv.Name .. ", O Seu IP & HWID foram enviadas a nossos servidores.")
+mjcqtrv:Kick("You've Kicked: User Blacklisted Detected! " .. mjcqtrv.Name .. ", Infos: Device, Adress Have Been Sent To Us..")
 wait(1)
 
 for i = 1, 100 do
