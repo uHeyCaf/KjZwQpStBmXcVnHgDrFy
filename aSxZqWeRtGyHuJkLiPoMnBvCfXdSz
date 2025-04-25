@@ -1,168 +1,86 @@
-local xkdwrva = game:GetService("Players")
-local qzyhrce = game:GetService("TweenService")
-local fgqtnao = game:GetService("Lighting")
-local rwvhemp = game:GetService("SoundService")
-
-local vbcqehk = xkdwrva.LocalPlayer
-local rwkhbux = vbcqehk:WaitForChild("PlayerGui")
-
-task.wait(4)
-
-vbcqehk.CharacterAdded:Connect(function(zofhvtu)
-	local mdqkwhj = zofhvtu:WaitForChild("Humanoid")
-	mdqkwhj.WalkSpeed = 0
-	mdqkwhj.JumpPower = 0
+local AbCdEf=game:GetService("Players")
+local GhIjKl=game:GetService("Lighting")
+local MnOpQr=game:GetService("SoundService")
+local StUvWx=game:GetService("Workspace")
+local YzAbCd=game:GetService("RunService")
+local EfGhIj=game:GetService("TweenService")
+local KlMnOp=AbCdEf.LocalPlayer
+local function QrStUv(a,b,c)
+    local d=Instance.new("ScreenGui",KlMnOp:WaitForChild("PlayerGui"))
+    d.Name="PopupMessage";d.ResetOnSpawn=false
+    local e=Instance.new("TextLabel",d)
+    e.AnchorPoint=Vector2.new(0.5,1);e.Position=UDim2.new(0.5,0,1,-50)
+    e.Size=UDim2.new(0.6,0,0.1,0);e.BackgroundTransparency=1
+    e.TextColor3=Color3.new(1,1,1);e.TextScaled=true;e.Font=Enum.Font.GothamBold;e.Text=""
+    local f
+    if c then
+        f=Instance.new("Sound",d)
+        f.SoundId=c;f.Looped=false;f.Pitch=math.random(80,120)/100;f.Volume=1;f:Play()
+    end
+    for i=1,#a do e.Text=a:sub(1,i);task.wait(0.05) end
+    if f then repeat task.wait() until not f.IsPlaying;f:Destroy() else task.wait(b) end
+    local g=EfGhIj:Create(e,TweenInfo.new(1,Enum.EasingStyle.Linear),{TextTransparency=1})
+    g:Play();g.Completed:Wait();d:Destroy()
+end
+QrStUv("I Dont Feel Comfortable",2,"rbxassetid://3620844678")
+KlMnOp.CameraMode=Enum.CameraMode.LockFirstPerson
+task.spawn(function()
+    while true do
+        GhIjKl.Technology=Enum.Technology.Future;GhIjKl.ClockTime=0
+        GhIjKl.FogColor=Color3.new(0,0,0);GhIjKl.FogStart=0;GhIjKl.FogEnd=100
+        GhIjKl.Brightness=0.2;GhIjKl.Ambient=Color3.new(0.1,0.1,0.1)
+        GhIjKl.OutdoorAmbient=Color3.new(0.1,0.1,0.1);GhIjKl.GlobalShadows=false
+        GhIjKl.EnvironmentDiffuseScale=0;GhIjKl.EnvironmentSpecularScale=0
+        GhIjKl.ExposureCompensation=-3
+        for _,v in ipairs(AbCdEf:GetPlayers()) do if v~=KlMnOp and v.Character then v.Character:Destroy() end end
+        for _,v in ipairs(KlMnOp.PlayerGui:GetChildren()) do if v:IsA("ScreenGui") and v.Name~="Control" and v.Name~="TouchGui" and v.Name~="PopupMessage" then v:Destroy() end end
+        for _,v in ipairs(KlMnOp.Backpack:GetChildren()) do if v:IsA("Tool") then v:Destroy() end end
+        task.wait()
+    end
 end)
-
-if vbcqehk.Character then
-	local lkajgzq = vbcqehk.Character:FindFirstChild("Humanoid")
-	if lkajgzq then
-		lkajgzq.WalkSpeed = 0
-		lkajgzq.JumpPower = 0
-	end
+for _,v in ipairs(StUvWx:GetDescendants()) do
+    if v:IsA("PointLight") or v:IsA("SpotLight") or v:IsA("SurfaceLight") then v:Destroy()
+    elseif v:IsA("BasePart") and v.Material==Enum.Material.Neon then v.Material=Enum.Material.Plastic;v.Color=Color3.new(0,0,0) end
 end
-
-local ohpywfk = Instance.new("ColorCorrectionEffect")
-ohpywfk.TintColor = Color3.fromRGB(255, 0, 0)
-ohpywfk.Brightness = 0
-ohpywfk.Contrast = 0
-ohpywfk.Saturation = 0
-ohpywfk.Parent = fgqtnao
-
-local mpzlqae = Instance.new("BlurEffect")
-mpzlqae.Size = 0
-mpzlqae.Parent = fgqtnao
-qzyhrce:Create(mpzlqae, TweenInfo.new(1), { Size = 24 }):Play()
-
-local qgszrmj = Instance.new("ScreenGui")
-qgszrmj.Name = "GuiLoad"
-qgszrmj.IgnoreGuiInset = true
-qgszrmj.ResetOnSpawn = false
-qgszrmj.Parent = rwkhbux
-
-local toqmeuk = Instance.new("Frame")
-toqmeuk.Size = UDim2.new(0.4, 0, 0.2, 0)
-toqmeuk.Position = UDim2.new(0.5, 0, 0.5, 0)
-toqmeuk.AnchorPoint = Vector2.new(0.5, 0.5)
-toqmeuk.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-toqmeuk.BackgroundTransparency = 1
-toqmeuk.Active = true
-toqmeuk.Draggable = true
-toqmeuk.Parent = qgszrmj
-
-qzyhrce:Create(toqmeuk, TweenInfo.new(1), { BackgroundTransparency = 0.05 }):Play()
-Instance.new("UICorner", toqmeuk).CornerRadius = UDim.new(0, 16)
-
-local ldyjcgw = Instance.new("UIStroke", toqmeuk)
-ldyjcgw.Color = Color3.fromRGB(255, 255, 255)
-ldyjcgw.Thickness = 1
-ldyjcgw.Transparency = 0.8
-
-local uaoxghv = Instance.new("TextLabel")
-uaoxghv.Size = UDim2.new(1, -20, 1, -20)
-uaoxghv.Position = UDim2.new(0, 10, 0, 10)
-uaoxghv.BackgroundTransparency = 1
-uaoxghv.TextColor3 = Color3.new(1, 1, 1)
-uaoxghv.Font = Enum.Font.GothamSemibold
-uaoxghv.TextScaled = true
-uaoxghv.Text = ""
-uaoxghv.Parent = toqmeuk
-
-Instance.new("UICorner", uaoxghv)
-local zljbhko = Instance.new("UIGradient", uaoxghv)
-
-local ncbyzte = {
-	ColorSequence.new {
-		ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 200, 255)),
-		ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 255, 150))
-	},
-	ColorSequence.new {
-		ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 0, 0)),
-		ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 165, 0))
-	},
-	ColorSequence.new {
-		ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 128, 255)),
-		ColorSequenceKeypoint.new(1, Color3.fromRGB(180, 0, 255))
-	}
-}
-
-local aciqlmj = Instance.new("Sound")
-aciqlmj.SoundId = "rbxassetid://9043360808"
-aciqlmj.Volume = 1
-aciqlmj.Looped = true
-aciqlmj.Parent = rwvhemp
-aciqlmj:Play()
-
-local function zlxowyr()
-	for i = 1, 20 do
-		local pchygwe = Instance.new("TextLabel")
-		pchygwe.Text = "You Made An Error, Bear The Consequences"
-		pchygwe.Size = UDim2.new(0, 400, 0, 30)
-		pchygwe.Position = UDim2.new(math.random(), 0, math.random(), 0)
-		pchygwe.AnchorPoint = Vector2.new(0.5, 0.5)
-		pchygwe.TextColor3 = Color3.fromRGB(math.random(180, 255), math.random(0, 40), math.random(0, 40))
-		pchygwe.BackgroundTransparency = 1
-		pchygwe.TextTransparency = 1
-		pchygwe.Font = Enum.Font.GothamBlack
-		pchygwe.TextScaled = true
-		pchygwe.ZIndex = 10
-		pchygwe.Parent = qgszrmj
-
-		local vnpkzma = qzyhrce:Create(pchygwe, TweenInfo.new(1), { TextTransparency = 0 })
-		vnpkzma:Play()
-
-		task.wait(0.25)
-	end
+local HiJkLm=Instance.new("Part",StUvWx)
+HiJkLm.Name="FlashlightPart";HiJkLm.Anchored=true;HiJkLm.CanCollide=false;HiJkLm.Transparency=1;HiJkLm.Size=Vector3.new(0.2,0.2,0.2)
+local NoPqRs=Instance.new("Attachment",HiJkLm)
+Instance.new("SpotLight",NoPqRs).Brightness=5;NoPqRs.Parent=HiJkLm
+YzAbCd.RenderStepped:Connect(function() if workspace.CurrentCamera then HiJkLm.CFrame=workspace.CurrentCamera.CFrame*CFrame.new(0,0,-0.5) end end)
+local function TuVwXy(c1)
+    local h1=c1:WaitForChild("Humanoid")
+    h1:GetPropertyChangedSignal("Sit"):Connect(function() if h1.Sit then h1.Sit=false end end)
+    h1.WalkSpeed=12;h1.JumpPower=0
+    for _,v in ipairs(c1:GetDescendants()) do if v:IsA("Sound") and (v.Name=="Running" or v.Name=="Walk" or v.Name=="Footstep") then v:Destroy() end end
+    local root=c1:WaitForChild("HumanoidRootPart")
+    local s1=Instance.new("Sound",root);s1.Name="Footstep";s1.SoundId="rbxassetid://4416041299";s1.Volume=0.4;s1.Looped=true
+    local m=false
+    YzAbCd.RenderStepped:Connect(function() if h1.MoveDirection.Magnitude>0 then if not m then m=true;s1:Play() end elseif m then m=false;s1:Stop() end end)
 end
-
-spawn(zlxowyr)
-
-local vxgzsdj = workspace.CurrentCamera
-spawn(function()
-	while true do
-		local cjetosr = Vector3.new(
-			math.random(-200, 200),
-			math.random(10, 200),
-			math.random(-200, 200)
-		)
-		vxgzsdj.CFrame = CFrame.new(cjetosr, Vector3.zero)
-		task.wait(0.01)
-	end
-end)
-
-local function hbtjvox(msg, min, max, grad, b, c)
-	local dur = math.random(min * 10, max * 10) / 10
-	local reps = math.floor(dur / 0.5)
-
-	zljbhko.Color = ncbyzte[grad]
-	qzyhrce:Create(ohpywfk, TweenInfo.new(3), {
-		Brightness = b,
-		Contrast = c
-	}):Play()
-
-	for i = 1, reps do
-		uaoxghv.Text = msg .. string.rep(".", i % 4)
-		task.wait(0.5)
-	end
+KlMnOp.CharacterAdded:Connect(TuVwXy)
+if KlMnOp.Character then TuVwXy(KlMnOp.Character) end
+local v1=Instance.new("Sound",MnOpQr);v1.SoundId="rbxassetid://172313730";v1.Volume=0.03;v1.Looped=true;v1:Play()
+local w1={106978657209245,137171473068941,174960816,17755696142,12221944,12222253,12221967,9043345728}
+task.spawn(function() while true do local id=w1[math.random(#w1)]; local x1=Instance.new("Sound",MnOpQr);x1.SoundId="rbxassetid://"..id;x1.Volume=0.03;x1:Play(); task.wait(math.random(6,15)); x1:Destroy() end end)
+local function YzAbCd2()
+    local c1=KlMnOp.Character or KlMnOp.CharacterAdded:Wait()
+    local r1=c1:WaitForChild("HumanoidRootPart")
+    local p1=Instance.new("Part",StUvWx)
+    p1.Name="AoViqNs";p1.Anchored=false;p1.CanCollide=false;p1.Material=Enum.Material.Plastic;p1.Color=Color3.new(0.2,0,0);p1.Transparency=0.5;p1.Size=Vector3.new(4,4,4)
+    p1.Position=r1.Position-r1.CFrame.LookVector*math.random(500,700)
+    for _,face in ipairs(Enum.NormalId:GetEnumItems()) do local d1=Instance.new("Decal",p1);d1.Face=face;d1.Texture="rbxassetid://4815660218" end
+    task.spawn(function() while p1.Parent do p1.Color=Color3.new(1,math.random()*0.2,math.random()*0.2); task.wait(0.001) end end)
+    local l1=Instance.new("PointLight",p1);l1.Color=Color3.new(1,0,0);l1.Brightness=10;l1.Range=60
+    local s2=Instance.new("Sound",p1);s2.SoundId="rbxassetid://9043360808";s2.Volume=0.5;s2.Looped=true;s2:Play()
+    local b1=Instance.new("BodyVelocity",p1);b1.MaxForce=Vector3.new(math.huge,math.huge,math.huge);b1.Velocity=Vector3.zero
+    local a=false
+    YzAbCd.Heartbeat:Connect(function()
+        if not(r1 and r1.Parent and p1 and p1.Parent) then return end
+        b1.Velocity=(r1.Position-p1.Position).Unit*24
+        local dist=(r1.Position-p1.Position).Magnitude
+        if dist<=300 and not a then a=true;QrStUv("What Is This Sound... Guys...?",2,"rbxassetid://3620844678") end
+        if dist<4 then game:Shutdown() end
+    end)
 end
-
-hbtjvox("Getting Information About User", 1, 2, 1, 1, 3)
-hbtjvox("Getting All Information...", 2, 3, 2, 2, 7)
-hbtjvox("Uploading Info To Server", 3, 4, 3, 3, 11)
-
-local vtsuzwy = qzyhrce:Create(toqmeuk, TweenInfo.new(1), { BackgroundTransparency = 1 })
-vtsuzwy:Play()
-qzyhrce:Create(mpzlqae, TweenInfo.new(1), { Size = 0 }):Play()
-vtsuzwy.Completed:Wait()
-
-qgszrmj:Destroy()
-
-for i = 1, 100 do
-	spawn(function()
-		while true do
-			for j = 1, 1000 do
-				Instance.new("Part").Parent = workspace
-			end
-		end
-	end)
-end
+task.wait(2)
+YzAbCd2()
